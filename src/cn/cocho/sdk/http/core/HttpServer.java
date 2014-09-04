@@ -65,7 +65,7 @@ public class HttpServer {
             return null;
         }
         BasicHttpParams httpParams = new BasicHttpParams();
-        HttpConnectionParams.setConnectionTimeout(httpParams, SdkContext.timeout);// 设置连接的超时时间
+        HttpConnectionParams.setConnectionTimeout(httpParams, 500);// 设置连接的超时时间
         HttpConnectionParams.setSoTimeout(httpParams, SdkContext.timeout);// 设置连接成功之后获取数据的超时时间
         HttpClient httpClient = new DefaultHttpClient(httpParams);
         response = httpClient.execute(httpUriRequest);
