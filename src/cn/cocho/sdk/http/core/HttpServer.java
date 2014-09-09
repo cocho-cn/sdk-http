@@ -5,6 +5,7 @@ import cn.cocho.sdk.http.domain.SdkResponse;
 import cn.cocho.sdk.http.utils.LoggerUtilsSdk;
 import cn.cocho.sdk.http.utils.SdkContext;
 import cn.cocho.sdk.http.utils.StringUtilsSdk;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -16,6 +17,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -45,6 +47,8 @@ public class HttpServer {
     public static HttpResponse doHttpRequest(SdkRequest sdkRequest) throws Exception {
         String url = sdkRequest.getRequestUrl();
         HttpPost httpPost = new HttpPost(url);
+//        HttpParams p = HttpParams.
+//        httpPost.setParams(p);
         httpPost.setEntity(new UrlEncodedFormEntity(getPostParam(sdkRequest.getParams()), SdkContext.encode));
         if (SdkContext.showLog) {
             LoggerUtilsSdk.debug("开始请求：\n" + url + "?" + getParams(sdkRequest.getParams()));

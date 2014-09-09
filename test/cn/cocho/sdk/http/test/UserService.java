@@ -13,4 +13,8 @@ public interface UserService {
     @SdkMethod("/anonymous/uc/loginUserWithAccreditCode.do")
     public JsonResult<UserInfo> login(@SdkParam("corpCode") String corpCode, @SdkParam("username") String username, @SdkParam("password") String password);
 
+	@SdkMethod("/user/uc/insertUserRelationInfo.do")
+	public JsonResult<UserRelationInfo> insertUserRelationInfo(@SdkParam("userRelationInfo") UserRelationInfo userRelationInfo, @SdkParam("token") String token);
+
+    
 }

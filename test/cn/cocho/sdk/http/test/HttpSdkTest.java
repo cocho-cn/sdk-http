@@ -15,7 +15,8 @@ public class HttpSdkTest {
     public void init() {
         try {
             initContext();
-            login();
+            addRelation();
+//            login();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -23,8 +24,30 @@ public class HttpSdkTest {
 
     private void initContext() {
         SdkContext.showLog = true;
-        SdkContext.serverBaseUrl = "http://192.168.1.110:8082/TeZiZai-svc";
+        SdkContext.serverBaseUrl = "http://192.168.1.102:8082/qiaobao-svc";
         SdkContext.log = new LoggerTools();
+    }
+    
+    private void addRelation(){
+    	try {
+    		UserRelationInfo userRelationInfo = new UserRelationInfo();
+    		userRelationInfo.setUserId("test");
+    		userRelationInfo.setUserRelationId("11");
+    		userRelationInfo.setRelationId("test");
+    		userRelationInfo.setRelationType("PRINT");
+    		
+    		UserService userService = ServiceFactory.getService(UserService.class);
+            JsonResult<UserRelationInfo> result = userService.insertUserRelationInfo(userRelationInfo, "916bb82b3b464ef1af82c37baba9f0a6");
+            assertEquals(result != null, true);
+            System.out.println(result.getStatusMsg());
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertEquals(true, false);
+        }
+
+    	
     }
 
     private void login() {
